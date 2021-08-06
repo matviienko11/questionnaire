@@ -7,6 +7,15 @@ import { QuestionManagementComponent } from './pages/question-management/questio
 import { CreateQuestionComponent } from './pages/create-question/create-question.component';
 import { QuestionEditComponent } from './pages/question-edit/question-edit.component';
 import { QuestionListComponent } from './pages/question-list/question-list.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
+import {MatSelectModule} from "@angular/material/select";
+import {MatOptionModule} from "@angular/material/core";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatDividerModule} from "@angular/material/divider";
 
 @NgModule({
   declarations: [
@@ -18,7 +27,17 @@ import { QuestionListComponent } from './pages/question-list/question-list.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatRadioModule,
+    FormsModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
