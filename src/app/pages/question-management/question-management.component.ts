@@ -3,6 +3,7 @@ import {QuestionsService} from "../../services/questions.service";
 import {Question} from "../../interfaces/question.interface";
 import {Observable, pipe} from "rxjs";
 import {map} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-question-management',
@@ -16,7 +17,8 @@ export class QuestionManagementComponent implements OnInit {
   errorMessage: string = '';
 
   constructor(
-    private questionService: QuestionsService
+    private questionService: QuestionsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,8 +28,10 @@ export class QuestionManagementComponent implements OnInit {
       this.isError = true;
       this.errorMessage = e.message;
     }
+  }
 
-
+  toCreate() {
+    this.router.navigate(['create'])
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {minLength} from "../../../utils/validators";
 import {QuestionsService} from "../../services/questions.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-question',
@@ -13,11 +14,10 @@ export class CreateQuestionComponent implements OnInit {
   form!: FormGroup;
   answer!: string;
 
-
-
   constructor(
     private fb: FormBuilder,
-    private questionService: QuestionsService
+    private questionService: QuestionsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +50,10 @@ export class CreateQuestionComponent implements OnInit {
   removeAnswer(index: number) {
     const answersArr = this.form.controls.answers as FormArray;
     answersArr.removeAt(index)
+  }
+
+  toManagement() {
+    this.router.navigate(['management'])
   }
 
 

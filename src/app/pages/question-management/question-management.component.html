@@ -1,4 +1,7 @@
 <div class="management-wrapper">
+
+  <button mat-raised-button (click)="toCreate()">To Question Create page</button>
+
   <div *ngIf="!isError; else error">
     <div *ngFor="let question of questions">
       <h3>{{question.body}}</h3>

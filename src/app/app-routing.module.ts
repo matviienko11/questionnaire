@@ -22,6 +22,11 @@ const routes: Routes = [
     path: 'list',
     component: QuestionListComponent
   },
+  {
+    path: '',
+    redirectTo: '/management',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

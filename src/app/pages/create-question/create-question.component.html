@@ -1,4 +1,7 @@
 <div class="question-container">
+
+  <button mat-raised-button (click)="toManagement()">To Question Management page</button>
+
   <form [formGroup]="form" class="question-form" (ngSubmit)="onSubmit()">
 
     <div>Question: </div>
