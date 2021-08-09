@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {minLength} from "../../../utils/validators";
+import {QuestionsService} from "../../services/questions.service";
 
 @Component({
   selector: 'app-create-question',
@@ -15,7 +16,8 @@ export class CreateQuestionComponent implements OnInit {
 
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private questionService: QuestionsService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +32,7 @@ export class CreateQuestionComponent implements OnInit {
 
   onSubmit() {
     const formData = this.form.getRawValue();
-    console.log(formData)
+    this.questionService.saveQuestion(formData);
   }
 
   addAnswer() {
