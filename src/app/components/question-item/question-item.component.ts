@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class QuestionItemComponent implements OnInit {
 
   @Input() question!: Question;
+  @Input() isAnswerable: boolean = false;
 
   constructor(
     private questionService: QuestionsService,

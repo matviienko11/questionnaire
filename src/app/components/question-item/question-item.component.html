@@ -1,6 +1,11 @@
 <div class="item-card">
-    <h3>{{question.body}}</h3>
-   <div>
+  <h3>{{question.body}}</h3>
+  <div *ngIf="isAnswerable" class="answer_btns">
+    <div *ngFor=" let answer of question.answers" >
+      <button mat-button color="primary">{{answer.answer}}</button>
+    </div>
+  </div>
+  <div>
     <div>{{question.type}}</div>
     <div>{{question.createdAt | date: 'medium'}}</div>
   </div>

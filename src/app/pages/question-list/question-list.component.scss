@@ -1,0 +1,15 @@
+.list_wrapper {
+  display: flex;
+  .unanswered {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .answered {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

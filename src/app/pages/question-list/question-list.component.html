@@ -1,1 +1,10 @@
-<p>question-list works!</p>
+<div class="list_wrapper">
+  <div class="unanswered" >
+    <div>Unaswered</div>
+    <app-question-item *ngFor="let item of unanswered" [question]="item" [isAnswerable]="true"></app-question-item>
+  </div>
+  <div class="answered">
+    <div>Answered</div>
+    <app-question-item *ngFor="let item of answered" [question]="item"></app-question-item>
+  </div>
+</div>
