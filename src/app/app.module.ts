@@ -17,6 +17,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatDividerModule} from "@angular/material/divider";
 import { QuestionItemComponent } from './components/question-item/question-item.component';
+import { QuestionFormComponent } from './components/question-form/question-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { QuestionItemComponent } from './components/question-item/question-item.
     CreateQuestionComponent,
     QuestionEditComponent,
     QuestionListComponent,
-    QuestionItemComponent
+    QuestionItemComponent,
+    QuestionFormComponent
   ],
   imports: [
     BrowserModule,

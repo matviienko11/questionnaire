@@ -15,7 +15,7 @@ const routes: Routes = [
     component: CreateQuestionComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: QuestionEditComponent
   },
   {

@@ -1,1 +1,12 @@
-<p>question-item works!</p>
+<div class="item-card">
+    <h3>{{question.body}}</h3>
+   <div>
+    <div>{{question.type}}</div>
+    <div>{{question.createdAt | date: 'medium'}}</div>
+  </div>
+  <div>
+    <button mat-raised-button (click)="onDelete(question.id)">Delete</button>
+    <button mat-raised-button (click)="onEdit(question)">Edit</button>
+  </div>
+
+</div>

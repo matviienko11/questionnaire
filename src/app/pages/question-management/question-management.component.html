@@ -3,10 +3,7 @@
   <button mat-raised-button (click)="toCreate()">To Question Create page</button>
 
   <div *ngIf="!isError; else error">
-    <div *ngFor="let question of questions">
-      <h3>{{question.body}}</h3>
-      <div>{{question.type}}</div>
-    </div>
+    <app-question-item *ngFor="let question of questions" [question]="question"></app-question-item>
   </div>
 </div>
 <ng-template #error>

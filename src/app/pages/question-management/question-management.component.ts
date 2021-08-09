@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuestionsService} from "../../services/questions.service";
 import {Question} from "../../interfaces/question.interface";
 import {Observable, pipe} from "rxjs";
@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 })
 export class QuestionManagementComponent implements OnInit {
 
-  questions: Question[] = [];
+  questions!: Question[];
   isError: boolean = false;
   errorMessage: string = '';
 
@@ -22,8 +22,9 @@ export class QuestionManagementComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('onInit')
     try {
-      this.questions = this.questionService.getQuestions();
+      this.questionService.getQuestions().subscribe(data => this.questions = data)
     } catch (e) {
       this.isError = true;
       this.errorMessage = e.message;
@@ -33,5 +34,6 @@ export class QuestionManagementComponent implements OnInit {
   toCreate() {
     this.router.navigate(['create'])
   }
+
 
 }

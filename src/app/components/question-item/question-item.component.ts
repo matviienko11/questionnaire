@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Question} from "../../interfaces/question.interface";
+import {QuestionsService} from "../../services/questions.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-question-item',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() question!: Question;
+
+  constructor(
+    private questionService: QuestionsService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  onDelete(id: string) {
+    this.questionService.deleteQuestion(id)
+  }
+
+  onEdit(question: Question) {
+    this.questionService.questionToEdit = question;
+    this.router.navigate([`edit/${question.id}`])
   }
 
 }
