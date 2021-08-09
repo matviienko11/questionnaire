@@ -1,1 +1,11 @@
-<p>question-management works!</p>
+<div class="management-wrapper">
+  <div *ngIf="!isError; else error">
+    <div *ngFor="let question of questions">
+      <h3>{{question.body}}</h3>
+      <div>{{question.type}}</div>
+    </div>
+  </div>
+</div>
+<ng-template #error>
+  <div>{{errorMessage}}</div>
+</ng-template>
