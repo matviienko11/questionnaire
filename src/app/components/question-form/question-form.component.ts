@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {minLength} from "../../../utils/validators";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
+import {Answer, Question} from "../../interfaces/question.interface";
 
 @Component({
   selector: 'app-question-form',
@@ -55,7 +56,8 @@ export class QuestionFormComponent implements OnInit {
       window.alert('You cannot add more answers')
     } else {
       answers.push(this.fb.group({
-        answer: this.answer
+        answer: this.answer,
+        isCorrect: false
       }))
     }
     this.answer = '';
@@ -64,6 +66,11 @@ export class QuestionFormComponent implements OnInit {
   removeAnswer(index: number) {
     const answersArr = this.form.controls.answers as FormArray;
     answersArr.removeAt(index)
+  }
+
+  makeCorrect(i: any) {
+    const answersArr = this.form.controls.answers as FormArray;
+    answersArr.at(i).patchValue({isCorrect: true})
   }
 
 }

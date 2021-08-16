@@ -30,4 +30,8 @@ export class QuestionItemComponent implements OnInit {
     this.router.navigate([`edit/${question.id}`])
   }
 
+  onAnswerSelect(answer: any) {
+    console.log(answer)
+  }
+
 }

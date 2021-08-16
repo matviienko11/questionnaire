@@ -7,6 +7,7 @@ export interface Question {
   createdAt: Date
 }
 
-interface Answer {
-  answer: string
+export interface Answer {
+  answer: string,
+  isCorrect: boolean
 }
