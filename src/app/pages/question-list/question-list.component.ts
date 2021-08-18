@@ -22,7 +22,6 @@ export class QuestionListComponent implements OnInit {
       this.questionService.getQuestions().subscribe(data => this.allQuestions = data);
       this.unanswered = this.allQuestions.filter(q => !q.isAnswered);
       this.answered = this.allQuestions.filter(q => q.isAnswered)
-      console.log(this.allQuestions);
     } catch (e) {
       console.log(e);
     }

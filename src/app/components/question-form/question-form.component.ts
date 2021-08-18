@@ -3,9 +3,8 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {QuestionsService} from "../../services/questions.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {minLength} from "../../../utils/validators";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
-import {Answer, Question} from "../../interfaces/question.interface";
+import {v4 as uuidv4} from 'uuid';
+
 
 @Component({
   selector: 'app-question-form',
@@ -56,6 +55,7 @@ export class QuestionFormComponent implements OnInit {
       window.alert('You cannot add more answers')
     } else {
       answers.push(this.fb.group({
+        id: uuidv4(),
         answer: this.answer,
         isCorrect: false
       }))

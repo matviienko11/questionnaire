@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Question} from "../../interfaces/question.interface";
+import {Answer, Question} from "../../interfaces/question.interface";
 import {QuestionsService} from "../../services/questions.service";
 import {Router} from "@angular/router";
 
@@ -16,7 +16,8 @@ export class QuestionItemComponent implements OnInit {
   constructor(
     private questionService: QuestionsService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -30,8 +31,11 @@ export class QuestionItemComponent implements OnInit {
     this.router.navigate([`edit/${question.id}`])
   }
 
-  onAnswerSelect(answer: any) {
-    console.log(answer)
+  onAnswerSelect(question: any, id: string) {
+    const answer = question.answers.find((i: Answer) => i.id === id);
+
+    this.questionService.answerQuestion(answer.id, question);
+
   }
 
 }
