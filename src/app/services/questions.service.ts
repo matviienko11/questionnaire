@@ -62,6 +62,22 @@ export class QuestionsService {
     }
   }
 
+  editQuestion(id: string, question: any) {
+    const questionArr = localStorage.getItem("questions");
+    if(questionArr) {
+      const parsedArr = JSON.parse(questionArr);
+      const parsedQuestion = parsedArr.find((i: any) => i.id === id);
+      const newArr = parsedArr.filter((i: any) => i.id !== id)
+      const editedQuestion = {
+        ...parsedQuestion,
+        body: question.body,
+        type: question.type
+      }
+      newArr.push(editedQuestion);
+      localStorage.setItem("questions", JSON.stringify(newArr))
+    }
+  }
+
   answerQuestion(id: string, question: Question) {
     const questionArr = localStorage.getItem("questions");
     if(questionArr) {

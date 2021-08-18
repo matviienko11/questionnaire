@@ -73,4 +73,9 @@ export class QuestionFormComponent implements OnInit {
     answersArr.at(i).patchValue({isCorrect: true})
   }
 
+  onQuestionEdit() {
+    const formData = this.form.getRawValue();
+    this.questionService.editQuestion(this.idToEdit, formData);
+  }
+
 }

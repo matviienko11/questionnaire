@@ -45,7 +45,7 @@
 
   <div class="form-btns">
     <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="!isEdit">Create</button>
-    <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="isEdit">Edit</button>
+    <button type="button" mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="isEdit" (click)="onQuestionEdit()">Edit</button>
     <!--      <button type="reset" mat-raised-button color="warn">Clear</button>-->
   </div>
 
