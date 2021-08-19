@@ -20,6 +20,7 @@ import { QuestionItemComponent } from './components/question-item/question-item.
 import { QuestionFormComponent } from './components/question-form/question-form.component';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import {PaginatorTransformPipe} from "./pipes/paginator-transform.pipe";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -33,20 +34,21 @@ import {PaginatorTransformPipe} from "./pipes/paginator-transform.pipe";
     PaginatorComponent,
     PaginatorTransformPipe
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NoopAnimationsModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatRadioModule,
-    FormsModule,
-    MatDividerModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NoopAnimationsModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatRadioModule,
+        FormsModule,
+        MatDividerModule,
+        MatIconModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

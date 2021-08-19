@@ -11,9 +11,9 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
-  //justify-content: space-between;
+  justify-content: space-between;
   width: 500px;
-  height: 500px;
+  height: 600px;
   box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
   border: 1px solid #cbcbcb;
 }
@@ -49,10 +49,24 @@
   height: 120px;
 }
 .answer_item {
+  margin-top: 10px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .answer_item_btns > button {
+    margin-right: 10px;
+  }
+  .answer_item_btns > button:hover {
+    cursor: pointer;
+  }
+  .correct_answer {
+    background-color: green;
+  }
 }
 
 .form-btns {
+  margin-top: 15px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+
 }

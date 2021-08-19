@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {QuestionsService} from "../../services/questions.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {minLength} from "../../../utils/validators";
@@ -13,8 +13,8 @@ import {v4 as uuidv4} from 'uuid';
 })
 export class QuestionFormComponent implements OnInit {
 
-  form!: FormGroup;
-  answer!: string;
+  form: FormGroup;
+  answer: string;
   idToEdit: string = '';
   @Input() isEdit: boolean = false;
 
@@ -47,18 +47,21 @@ export class QuestionFormComponent implements OnInit {
   onSubmit() {
     const formData = this.form.getRawValue();
     this.questionService.saveQuestion(formData);
+    this.form.reset()
   }
 
   addAnswer() {
+    if(!this.answer) return;
     const answers = this.form.controls.answers as FormArray;
     if(this.form.controls.answers.value.length >= 4) {
       window.alert('You cannot add more answers')
     } else {
-      answers.push(this.fb.group({
+      const answerControl = new FormControl({
         id: uuidv4(),
         answer: this.answer,
         isCorrect: false
-      }))
+      })
+      answers.push(this.fb.group(answerControl.value))
     }
     this.answer = '';
   }
@@ -70,7 +73,12 @@ export class QuestionFormComponent implements OnInit {
 
   makeCorrect(i: any) {
     const answersArr = this.form.controls.answers as FormArray;
-    answersArr.at(i).patchValue({isCorrect: true})
+    const ansItem = answersArr.at(i).value
+    answersArr.at(i).patchValue({isCorrect: !ansItem.isCorrect})
+  }
+
+  show(item: any) {
+    console.log(item)
   }
 
   onQuestionEdit() {
