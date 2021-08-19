@@ -1,8 +1,26 @@
-.questions_wrapper {
-  display: flex;
-  flex-wrap: wrap;
+.management_wrapper {
+
+  .content_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+  .content_wrapper > button {
+    width: fit-content;
+    align-self: center;
+  }
+
+  .questions_wrapper {
+    display: flex;
+    flex-direction: column;
+    .questions {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
+    background-color: white;
+  }
 }
 
-::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
-  background-color: white;
-}
