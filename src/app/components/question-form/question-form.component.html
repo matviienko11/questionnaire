@@ -19,8 +19,7 @@
 
     <mat-divider></mat-divider>
 
-    <div class="answer_section" formArrayName="answers" *ngIf="form.controls.type.value !== 'Open question'">
-
+    <div class="answer_section" formArrayName="answers" *ngIf="form.controls.type.value !== 'Open question'; else textarea">
       <div class="add_answer">
         <div>Enter possible answers: </div>
         <mat-form-field appearance="standard">
@@ -47,16 +46,17 @@
         </div>
       </div>
     </div>
+
+    <ng-template #textarea>
+      <div class="textarea_wrapper" >
+        <textarea placeholder="Type the answer..." rows="10" cols="50" required [(ngModel)]="openAnswer" [ngModelOptions]="{standalone: true}"></textarea>
+      </div>
+    </ng-template>
   </div>
-
-
-
-
 
   <div class="form-btns">
     <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="!isEdit">Create</button>
     <button type="button" mat-raised-button color="primary" [disabled]="!form.valid" *ngIf="isEdit" (click)="onQuestionEdit()">Edit</button>
-    <!--      <button type="reset" mat-raised-button color="warn">Clear</button>-->
   </div>
 
 </form>

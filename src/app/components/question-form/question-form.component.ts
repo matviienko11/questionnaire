@@ -15,23 +15,23 @@ export class QuestionFormComponent implements OnInit {
 
   form: FormGroup;
   answer: string;
+  openAnswer: string;
   idToEdit: string = '';
   @Input() isEdit: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private questionService: QuestionsService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-
-    console.log(this.isEdit)
     if(!this.isEdit) {
       this.form = this.fb.group({
         body: ['', Validators.required],
         type: ['', Validators.required],
-        answers: this.fb.array([], minLength(2))
+        answers: this.fb.array([])
       })
     } else {
       this.activatedRoute.params.subscribe(data => this.idToEdit = data.id)
@@ -46,8 +46,17 @@ export class QuestionFormComponent implements OnInit {
 
   onSubmit() {
     const formData = this.form.getRawValue();
+    if(this.openAnswer) {
+      const answer = {
+        id: uuidv4(),
+        answer: this.openAnswer,
+        isCorrect: false
+      }
+      formData.answers.push(answer)
+    }
     this.questionService.saveQuestion(formData);
-    this.form.reset()
+    this.form.reset();
+    this.router.navigate(['management'])
   }
 
   addAnswer() {
