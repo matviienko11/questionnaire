@@ -1,5 +1,7 @@
-<div>
-  <app-question-form [isEdit]="true"></app-question-form>
-  <button mat-raised-button (click)="toManagement()">To Question Management page</button>
+<div class="edit_wrapper">
+  <div class="content_wrapper">
+    <button mat-raised-button (click)="toManagement()">To Question Management page</button>
+    <app-question-form [isEdit]="true"></app-question-form>
+  </div>
 </div>
 

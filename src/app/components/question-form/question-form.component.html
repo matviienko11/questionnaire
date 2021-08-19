@@ -48,8 +48,15 @@
     </div>
 
     <ng-template #textarea>
-      <div class="textarea_wrapper" >
-        <textarea placeholder="Type the answer..." rows="10" cols="50" required [(ngModel)]="openAnswer" [ngModelOptions]="{standalone: true}"></textarea>
+      <div class="textarea_wrapper" formArrayName="answers" >
+        <textarea
+          placeholder="Type the answer..."
+          rows="10"
+          cols="50"
+          required
+          [(ngModel)]="openAnswer"
+          [ngModelOptions]="{standalone: true}"
+        ></textarea>
       </div>
     </ng-template>
   </div>

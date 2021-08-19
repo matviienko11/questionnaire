@@ -36,6 +36,20 @@ export class QuestionFormComponent implements OnInit {
     } else {
       this.activatedRoute.params.subscribe(data => this.idToEdit = data.id)
       const editableQuestion = this.questionService.getQuestionById(this.idToEdit);
+      if(editableQuestion.type === "Open question") {
+        this.openAnswer = editableQuestion.answers[0].answer;
+        this.form = this.fb.group({
+          body: [editableQuestion.body],
+          type: [editableQuestion.type],
+          answers: this.fb.array([{
+            id: editableQuestion.answers[0].id,
+            answer: editableQuestion.answers[0].answer,
+            isCorrect: editableQuestion.answers[0].isCorrect
+          }])
+        })
+        return;
+
+      }
       this.form = this.fb.group({
         body: [editableQuestion.body],
         type: [editableQuestion.type],
@@ -92,6 +106,10 @@ export class QuestionFormComponent implements OnInit {
 
   onQuestionEdit() {
     const formData = this.form.getRawValue();
+    if(formData.type === "Open question") {
+      formData.answers[0].answer = this.openAnswer
+      return this.questionService.editQuestion(this.idToEdit, formData);
+    }
     this.questionService.editQuestion(this.idToEdit, formData);
   }
 
