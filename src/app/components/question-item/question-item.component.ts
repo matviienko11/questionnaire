@@ -35,7 +35,10 @@ export class QuestionItemComponent implements OnInit {
     const answer = question.answers.find((i: Answer) => i.id === id);
 
     this.questionService.answerQuestion(answer.id, question);
+  }
 
+  showMe(q: any) {
+    console.log(q)
   }
 
 }

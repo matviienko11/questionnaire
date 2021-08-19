@@ -1,13 +1,29 @@
-.item-card {
-  width: 400px;
-  height: 250px;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+.item_card_wrapper {
+
+  .item_card_content {
+    width: 400px;
+    height: 250px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+  }
+
+  .item_card_buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .item_card_buttons > button {
+    margin-right: 20px;
+  }
 }
+
+
 
 .answer_btns {
   display: flex;
 }
+
