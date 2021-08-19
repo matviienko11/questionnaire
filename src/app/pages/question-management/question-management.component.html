@@ -5,6 +5,14 @@
   <div *ngIf="!isError; else error">
     <app-question-item *ngFor="let question of questions" [question]="question"></app-question-item>
   </div>
+
+  <app-paginator
+    (pagination)="handlePagination($event)"
+    [totalLength]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+  ></app-paginator>
+
 </div>
 <ng-template #error>
   <div>{{errorMessage}}</div>

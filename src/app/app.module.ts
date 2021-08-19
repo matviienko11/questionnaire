@@ -18,6 +18,8 @@ import {MatRadioModule} from "@angular/material/radio";
 import {MatDividerModule} from "@angular/material/divider";
 import { QuestionItemComponent } from './components/question-item/question-item.component';
 import { QuestionFormComponent } from './components/question-form/question-form.component';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import {PaginatorTransformPipe} from "./pipes/paginator-transform.pipe";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { QuestionFormComponent } from './components/question-form/question-form.
     QuestionEditComponent,
     QuestionListComponent,
     QuestionItemComponent,
-    QuestionFormComponent
+    QuestionFormComponent,
+    PaginatorComponent,
+    PaginatorTransformPipe
   ],
   imports: [
     BrowserModule,

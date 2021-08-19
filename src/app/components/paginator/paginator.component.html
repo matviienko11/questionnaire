@@ -1,0 +1,27 @@
+<div class="paginator_wrapper">
+  <div class="paginator">
+
+    <div class="paginator_pagesize">
+      <div>Items per page:</div>
+      <mat-form-field appearance="fill">
+        <mat-select [(value)]="pageSize" (valueChange)="handlePageSizeChange()">
+          <mat-option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="paginator_page">
+      <button mat-raised-button color="primary" (click)="handlePrev()" [disabled]="isDisabledPrev"> < Prev </button>
+      <div *ngFor="let item of pagesArr ">
+        <button class="paginator_button" mat-raised-button *ngIf="item.value !== '...'; else dots" (click)="onPageSelect(item)" [disabled]="item.isActive">{{item.value | paginator}}</button>
+        <ng-template #dots class="dots">
+          <div class="paginator_dots">{{item.value | paginator}}</div>
+        </ng-template>
+      </div>
+      <button mat-raised-button color="primary" (click)="handleNext()" [disabled]="isDisabledNext"> Next > </button>
+    </div>
+
+  </div>
+</div>
+
+

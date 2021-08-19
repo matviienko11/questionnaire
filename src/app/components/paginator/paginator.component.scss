@@ -1,0 +1,24 @@
+.paginator {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .paginator_pagesize {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+  }
+  .paginator_page {
+    display: flex;
+    align-items: center;
+    .paginator_dots {
+      margin: 10px;
+    }
+  }
+  button {
+    margin: 10px;
+  }
+}
+
+::ng-deep .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+  width: 75px;
+}
