@@ -2,7 +2,7 @@
 
   <button mat-raised-button (click)="toCreate()">To Question Create page</button>
 
-  <div *ngIf="!isError; else error">
+  <div class="questions_wrapper" *ngIf="!isError; else error">
     <app-question-item *ngFor="let question of questions" [question]="question"></app-question-item>
   </div>
 
