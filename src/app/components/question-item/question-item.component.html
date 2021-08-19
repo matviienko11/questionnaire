@@ -10,10 +10,13 @@
       <div>{{question.type}}</div>
       <div>{{question.createdAt | date: 'medium'}}</div>
     </div>
-    <div class="item_card_buttons">
+    <div class="item_card_buttons" *ngIf="isAnswerable || isManagement; else moveBack">
       <button mat-raised-button (click)="onDelete(question.id)">Delete</button>
       <button mat-raised-button (click)="onEdit(question)">Edit</button>
     </div>
+    <ng-template #moveBack>
+      <button mat-raised-button (click)="move(question)">Move to Unanswered</button>
+    </ng-template>
   </div>
 
 </div>

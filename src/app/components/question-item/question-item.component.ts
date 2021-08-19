@@ -12,6 +12,7 @@ export class QuestionItemComponent implements OnInit {
 
   @Input() question!: Question;
   @Input() isAnswerable: boolean = false;
+  @Input() isManagement: boolean = false;
 
   constructor(
     private questionService: QuestionsService,
@@ -39,6 +40,11 @@ export class QuestionItemComponent implements OnInit {
 
   showMe(q: any) {
     console.log(q)
+  }
+
+  move(question: Question) {
+    question.isAnswered = false;
+    this.questionService.editQuestion(question.id, question)
   }
 
 }

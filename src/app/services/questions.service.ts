@@ -71,7 +71,8 @@ export class QuestionsService {
       const editedQuestion = {
         ...parsedQuestion,
         body: question.body,
-        type: question.type
+        type: question.type,
+        isAnswered: question.isAnswered
       }
       newArr.push(editedQuestion);
       localStorage.setItem("questions", JSON.stringify(newArr))
