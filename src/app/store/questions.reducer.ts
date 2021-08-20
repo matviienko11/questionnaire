@@ -7,12 +7,7 @@ export function sortByDate(a: Question, b: Question): number {
   return +new Date(b.createdAt) - +new Date(a.createdAt);
 }
 
-export function selectQuestionId(a: Question): string {
-  return a.id;
-}
-
 export const adapter: EntityAdapter<any> = createEntityAdapter<any>({
-  selectId: selectQuestionId,
   sortComparer: sortByDate
 });
 
