@@ -34,7 +34,6 @@ export class QuestionManagementComponent implements OnInit {
       this.store.dispatch(loadQuestions())
       this.store.select(selectQuestions).subscribe(res => {
         this.length = res.length;
-        console.log(res)
         this.questions = res.slice(0, this.pageSize);
       })
     } catch (e) {

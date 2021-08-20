@@ -64,20 +64,20 @@ export class QuestionsService {
     }
   }
 
-  editQuestion(id: string, question: any) {
+  editQuestion(id: string, questiontoEdit: any) {
     const questionArr = localStorage.getItem("questions");
     if(questionArr) {
       const parsedArr = JSON.parse(questionArr);
       const parsedQuestion = parsedArr.find((i: any) => i.id === id);
       const newArr = parsedArr.filter((i: any) => i.id !== id)
-      const editedQuestion = {
+      const question = {
         ...parsedQuestion,
-        body: question.body,
-        type: question.type,
-        isAnswered: question.isAnswered,
-        answers: question.answers
+        body: questiontoEdit.body,
+        type: questiontoEdit.type,
+        isAnswered: questiontoEdit.isAnswered,
+        answers: questiontoEdit.answers
       }
-      newArr.push(editedQuestion);
+      newArr.push(question);
       this.store.dispatch(editQuestion({question}))
 
       localStorage.setItem("questions", JSON.stringify(newArr))
