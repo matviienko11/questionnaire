@@ -4,6 +4,9 @@ import {Question} from "../../interfaces/question.interface";
 import {Observable, pipe} from "rxjs";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {selectQuestions} from "../../store/questions.selectors";
+import {loadQuestions} from "../../store/questions.actions";
 
 @Component({
   selector: 'app-question-management',
@@ -22,18 +25,19 @@ export class QuestionManagementComponent implements OnInit {
 
   constructor(
     private questionService: QuestionsService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
     try {
-      this.Questions$.subscribe(data => {
-        this.length = data.length;
-        this.questions = [...data].slice(0, this.pageSize)
-      });
+      this.store.dispatch(loadQuestions())
+      this.store.select(selectQuestions).subscribe(res => {
+        this.length = res.length;
+        this.questions = [...res].slice(0, this.pageSize);
+      })
     } catch (e) {
-      this.isError = true;
-      this.errorMessage = e.message;
+      console.log(e)
     }
   }
 

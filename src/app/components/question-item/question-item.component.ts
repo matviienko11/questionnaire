@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Answer, Question} from "../../interfaces/question.interface";
 import {QuestionsService} from "../../services/questions.service";
 import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {editQuestion, removeQuestion} from "../../store/questions.actions";
 
 @Component({
   selector: 'app-question-item',
@@ -16,7 +18,8 @@ export class QuestionItemComponent implements OnInit {
 
   constructor(
     private questionService: QuestionsService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {
   }
 
@@ -24,7 +27,8 @@ export class QuestionItemComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    this.questionService.deleteQuestion(id)
+    this.store.dispatch(removeQuestion({id}));
+    this.questionService.deleteQuestion(id);
   }
 
   onEdit(question: Question) {
@@ -34,7 +38,6 @@ export class QuestionItemComponent implements OnInit {
 
   onAnswerSelect(question: any, id: string) {
     const answer = question.answers.find((i: Answer) => i.id === id);
-
     this.questionService.answerQuestion(answer.id, question);
   }
 
@@ -42,8 +45,8 @@ export class QuestionItemComponent implements OnInit {
     console.log(q)
   }
 
-  move(question: Question) {
-    question.isAnswered = false;
+  move(questionToMove: Question) {
+    const question = {...questionToMove, isAnswered: false}
     this.questionService.editQuestion(question.id, question)
   }
 
