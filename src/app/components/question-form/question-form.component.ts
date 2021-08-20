@@ -108,9 +108,10 @@ export class QuestionFormComponent implements OnInit {
     const formData = this.form.getRawValue();
     if(formData.type === "Open question") {
       formData.answers[0].answer = this.openAnswer
-      return this.questionService.editQuestion(this.idToEdit, formData);
+      this.questionService.editQuestion(this.idToEdit, formData);
     }
     this.questionService.editQuestion(this.idToEdit, formData);
+    this.router.navigate(['management'])
   }
 
 }
