@@ -14,18 +14,17 @@ export class QuestionsService {
 
   questions: Question[] = [];
   questionToEdit!: Question;
-  questionArr = localStorage.getItem("questions");
-
 
   saveQuestion(question: Question) {
+    let questionArr = localStorage.getItem("questions");
     const newQuestion = {
       ...question,
       id: uuidv4(),
       isAnswered: false,
       createdAt: new Date()
     }
-    if(this.questionArr) {
-      const parsedArr = JSON.parse(this.questionArr);
+    if(questionArr) {
+      const parsedArr = JSON.parse(questionArr);
       parsedArr.push(newQuestion);
       localStorage.setItem("questions", JSON.stringify(parsedArr))
     } else {
@@ -36,16 +35,18 @@ export class QuestionsService {
   }
 
   getQuestions(): Observable<Question[]> {
-    if(this.questionArr) {
-      return of(JSON.parse(this.questionArr));
+    let questionArr = localStorage.getItem("questions");
+    if(questionArr) {
+      return of(JSON.parse(questionArr));
     } else {
       throw Error("Sorry, no questions")
     }
   }
 
   getQuestionById(id: string) {
-    if(this.questionArr) {
-      const parsedArr = JSON.parse(this.questionArr);
+    let questionArr = localStorage.getItem("questions");
+    if(questionArr) {
+      const parsedArr = JSON.parse(questionArr);
       return parsedArr.find((i: Question) => i.id === id)
     } else {
       throw Error("Sorry, such question does not exist")
@@ -53,17 +54,20 @@ export class QuestionsService {
   }
 
   deleteQuestion(id: string) {
-    if(this.questionArr) {
+    const questionArr = localStorage.getItem("questions");
+    if(questionArr) {
       console.log("hello")
-      const parsedArr = JSON.parse(this.questionArr);
+      const parsedArr = JSON.parse(questionArr);
       const newArr = parsedArr.filter((i: any) => i.id !== id)
       localStorage.setItem("questions", JSON.stringify(newArr))
+      // this.getQuestions();
     }
   }
 
   editQuestion(id: string, questiontoEdit: any) {
-    if(this.questionArr) {
-      const parsedArr = JSON.parse(this.questionArr);
+    const questionArr = localStorage.getItem("questions");
+    if(questionArr) {
+      const parsedArr = JSON.parse(questionArr);
       const parsedQuestion = parsedArr.find((i: any) => i.id === id);
       const newArr = parsedArr.filter((i: any) => i.id !== id)
       const question = {
@@ -81,8 +85,9 @@ export class QuestionsService {
   }
 
   answerQuestion(id: string, questionToAnswer: Question) {
-    if(this.questionArr) {
-      const parsedArr = JSON.parse(this.questionArr);
+    const questionArr = localStorage.getItem("questions");
+    if(questionArr) {
+      const parsedArr = JSON.parse(questionArr);
       const parsedQuestion = parsedArr.find((i: any) => i.id === questionToAnswer.id);
       const answer = parsedQuestion.answers.find((i: any) => i.id === id)
       if(answer.isCorrect) {
@@ -98,8 +103,9 @@ export class QuestionsService {
     }
   }
   answerOpenQuestion(questionToAnswer: Question, answer: string) {
-    if(this.questionArr) {
-      const parsedArr = JSON.parse(this.questionArr);
+    const questionArr = localStorage.getItem("questions");
+    if(questionArr) {
+      const parsedArr = JSON.parse(questionArr);
       const parsedQuestion = parsedArr.find((i: any) => i.id === questionToAnswer.id);
       const correctAnswer = parsedQuestion.answers[0].answer;
       if(correctAnswer === answer) {
