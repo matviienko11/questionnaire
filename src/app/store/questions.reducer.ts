@@ -1,8 +1,15 @@
 import {createReducer, on} from "@ngrx/store";
 import {addQuestion, editQuestion, loadedQuestions, removeQuestion} from "./questions.actions";
 import {createEntityAdapter, EntityAdapter} from "@ngrx/entity";
+import {Question} from "../interfaces/question.interface";
 
-export const adapter: EntityAdapter<any> = createEntityAdapter<any>();
+export function sortByDate(a: Question, b: Question): number {
+  return +new Date(b.createdAt) - +new Date(a.createdAt);
+}
+
+export const adapter: EntityAdapter<any> = createEntityAdapter<any>({
+  sortComparer: sortByDate
+});
 
 const initialQuestionState: any = adapter.getInitialState({});
 

@@ -34,7 +34,8 @@ export class QuestionManagementComponent implements OnInit {
       this.store.dispatch(loadQuestions())
       this.store.select(selectQuestions).subscribe(res => {
         this.length = res.length;
-        this.questions = [...res].slice(0, this.pageSize);
+        console.log(res)
+        this.questions = res.slice(0, this.pageSize);
       })
     } catch (e) {
       console.log(e)
@@ -58,7 +59,7 @@ export class QuestionManagementComponent implements OnInit {
       map(
         data => {
           this.pageIndex = 0;
-          this.questions = [...data].slice(start, end)
+          this.questions = data.slice(start, end)
         }
       )
     )
@@ -66,7 +67,7 @@ export class QuestionManagementComponent implements OnInit {
   }
 
   private get Questions$() {
-    return this.questionService.getQuestions()
+    return this.store.select(selectQuestions)
   }
 
 
