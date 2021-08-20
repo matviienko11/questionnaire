@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import {Answer, Question} from "../interfaces/question.interface";
 import {v4 as uuidv4} from 'uuid';
 import {BehaviorSubject, Observable, of} from "rxjs";
+import {editQuestion} from "../store/questions.actions";
+import {Store} from "@ngrx/store";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionsService {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   questions: Question[] = [];
   questionToEdit!: Question;
@@ -76,23 +78,27 @@ export class QuestionsService {
         answers: question.answers
       }
       newArr.push(editedQuestion);
+      this.store.dispatch(editQuestion({question}))
+
       localStorage.setItem("questions", JSON.stringify(newArr))
     }
   }
 
-  answerQuestion(id: string, question: Question) {
+  answerQuestion(id: string, questionToAnswer: Question) {
     const questionArr = localStorage.getItem("questions");
     if(questionArr) {
       const parsedArr = JSON.parse(questionArr);
-      const parsedQuestion = parsedArr.find((i: any) => i.id === question.id);
+      const parsedQuestion = parsedArr.find((i: any) => i.id === questionToAnswer.id);
       const answer = parsedQuestion.answers.find((i: any) => i.id === id)
       if(answer.isCorrect) {
-        const newArr = parsedArr.filter((i: any) => i.id !== question.id)
-        const newQuestion = {
-          ...question,
+        const newArr = parsedArr.filter((i: any) => i.id !== questionToAnswer.id)
+        const question = {
+          ...questionToAnswer,
           isAnswered: true
         }
-        newArr.push(newQuestion);
+        newArr.push(question);
+        this.store.dispatch(editQuestion({question}))
+
         localStorage.setItem("questions", JSON.stringify(newArr))
       }
 
