@@ -1,10 +1,19 @@
-<div class="item_card_wrapper" (click)="showMe(question)">
+<div class="item_card_wrapper">
   <div class="item_card_content">
     <h3>{{question.body}}</h3>
-    <div *ngIf="isAnswerable" class="answer_btns">
-      <div *ngFor=" let answer of question.answers" >
+    <div *ngIf="isAnswerable && question.type !== 'Open question'" class="answer_btns">
+      <div *ngFor=" let answer of question.answers">
         <button mat-button color="primary" (click)="onAnswerSelect(question, answer.id)">{{answer.answer}}</button>
       </div>
+    </div>
+    <div *ngIf="question.type === 'Open question' && isAnswerable" class="openQ_section">
+      <textarea
+        placeholder="Type the answer..."
+        rows="3"
+        cols="30"
+        [(ngModel)]="answerToOpenQ"
+      ></textarea>
+      <button mat-button (click)="handleAnswerToOpenQ(question)">Submit</button>
     </div>
     <div>
       <div>{{question.type}}</div>

@@ -98,11 +98,28 @@ export class QuestionsService {
         }
         newArr.push(question);
         this.store.dispatch(editQuestion({question}))
-
         localStorage.setItem("questions", JSON.stringify(newArr))
       }
-
     }
+  }
+  answerOpenQuestion(questionToAnswer: Question, answer: string) {
+    const questionArr = localStorage.getItem("questions");
+    if(questionArr) {
+      const parsedArr = JSON.parse(questionArr);
+      const parsedQuestion = parsedArr.find((i: any) => i.id === questionToAnswer.id);
+      const correctAnswer = parsedQuestion.answers[0].answer;
+      if(correctAnswer === answer) {
+        const newArr = parsedArr.filter((i: any) => i.id !== questionToAnswer.id)
+        const question = {
+          ...questionToAnswer,
+          isAnswered: true
+        }
+        newArr.push(question);
+        this.store.dispatch(editQuestion({question}))
+        localStorage.setItem("questions", JSON.stringify(newArr))
+      }
+    }
+
   }
 
 }

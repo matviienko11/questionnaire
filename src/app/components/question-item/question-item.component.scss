@@ -9,6 +9,15 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+    .openQ_section {
+      display: flex;
+      flex-direction: column;
+    }
+    .openQ_section > button {
+      margin-top: 10px;
+      width: fit-content;
+      align-self: center;
+    }
   }
 
   .item_card_buttons {

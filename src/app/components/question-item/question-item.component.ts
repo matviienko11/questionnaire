@@ -15,6 +15,7 @@ export class QuestionItemComponent implements OnInit {
   @Input() question!: Question;
   @Input() isAnswerable: boolean = false;
   @Input() isManagement: boolean = false;
+  answerToOpenQ: string;
 
   constructor(
     private questionService: QuestionsService,
@@ -41,13 +42,13 @@ export class QuestionItemComponent implements OnInit {
     this.questionService.answerQuestion(answer.id, question);
   }
 
-  showMe(q: any) {
-    console.log(q)
-  }
-
   move(questionToMove: Question) {
     const question = {...questionToMove, isAnswered: false}
     this.questionService.editQuestion(question.id, question)
+  }
+
+  handleAnswerToOpenQ(question: Question) {
+    this.questionService.answerOpenQuestion(question, this.answerToOpenQ);
   }
 
 }
