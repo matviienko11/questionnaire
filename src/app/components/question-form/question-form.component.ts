@@ -97,7 +97,7 @@ export class QuestionFormComponent implements OnInit {
   makeCorrect(i: any) {
     const answersArr = this.form.controls.answers as FormArray;
     const ansItem = answersArr.at(i).value
-    answersArr.at(i).patchValue({isCorrect: !ansItem.isCorrect})
+    answersArr.at(i).patchValue({...ansItem, isCorrect: !ansItem.isCorrect})
   }
 
   show(item: any) {
